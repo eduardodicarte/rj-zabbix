@@ -42,7 +42,6 @@
 #
 # Copyright 2017 Your name here, unless otherwise noted.
 #
-class zabbix {
-
-
+class zabbix ($ip='192.164.120.10',$gw='192.168.0.1', $interface='enp0s3'){
+  include zabbix::config::centos::network
 }
