@@ -1,0 +1,14 @@
+{
+  "name": "rj-zabbix",
+  "version": "0.0.1",
+  "author": "rj",
+  "summary": "Módulo para provisionamento do Zabbix Server",
+  "license": "MIT Licence",
+  "source": "https://github.com/eduardodicarte/rj-zabbix",
+  "project_page": "https://github.com/eduardodicarte/rj-zabbix",
+  "issues_url": "https://github.com/eduardodicarte/rj-zabbix/issues",
+  "dependencies": [
+    {"name":"puppet-network","version_requirement":"= 0.7.0"}
+  ],
+  "data_provider": null
+}
