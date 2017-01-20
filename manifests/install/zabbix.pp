@@ -1,3 +1,0 @@
-class zabbix::install::zabbix {
-  
-}

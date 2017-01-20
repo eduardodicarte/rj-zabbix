@@ -47,7 +47,25 @@ class zabbix ($ip='192.164.120.10',$gw='192.168.0.1', $interface='enp0s3'){
   include zabbix::config::host
 
   if !$is_virtual {
-      include zabbix::config::centos::network
+      notify('Configurando a rede para o CentOS')
+      include zabbix::centos::config::network
   }
 
+  #instalação do repositorio do zabbix
+  include zabbix::centos::install::repository
+  #contain zabbix::centos::install::dependencies
+
+  #instalação de dependencias
+  include zabbix::centos::install::dependencies
+
+  #Instando e configurando o banco de dados (Mysql - Suportado por essa instalação)
+  include zabbix::centos::install::database::init
+
+  #Class['zabbix::centos::install::repository']
+
+  #notify('Instalando as dependências necessárias para a configuração do Zabbix')
+  #Class['zabbix::centos::install::dependencies']
+
+  #notify('Instando e configurando o banco de dados (Mysql - Suportado por essa instalação)')
+  #Class['zabbix::centos::install::database::init']
 }
