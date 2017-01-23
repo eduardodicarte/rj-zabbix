@@ -8,7 +8,8 @@
   "project_page": "https://github.com/eduardodicarte/rj-zabbix",
   "issues_url": "https://github.com/eduardodicarte/rj-zabbix/issues",
   "dependencies": [
-    {"name":"puppet-network","version_requirement":">= 0.7.0"}
+    {"name":"puppet-network","version_requirement":">= 0.7.0"},
+    {"name":"puppetlabs-postgresql","version_requirement":">= 4.8.0"}
   ],
   "data_provider": null
 }

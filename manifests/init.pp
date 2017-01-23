@@ -44,28 +44,28 @@
 #
 class zabbix ($ip='192.164.120.10',$gw='192.168.0.1', $interface='enp0s3'){
 
-  include zabbix::config::host
+  contain zabbix::config::host
+  contain zabbix::centos::config::network
+  contain zabbix::centos::install::repository
+  contain zabbix::centos::install::dependencies
+  contain zabbix::centos::install::database::pgsql::init
+  contain zabbix::centos::install::server
 
-  if !$is_virtual {
-      notify('Configurando a rede para o CentOS')
-      include zabbix::centos::config::network
-  }
+  #Configuração do hostname
+  Class['zabbix::config::host'] ->
 
-  #instalação do repositorio do zabbix
-  include zabbix::centos::install::repository
-  #contain zabbix::centos::install::dependencies
+  #Configuração da rede
+  Class['zabbix::centos::config::network'] ->
+
+  #instalação do repositório do zabbix
+  Class['zabbix::centos::install::repository'] ->
 
   #instalação de dependencias
-  include zabbix::centos::install::dependencies
+  Class['zabbix::centos::install::dependencies'] ->
 
-  #Instando e configurando o banco de dados (Mysql - Suportado por essa instalação)
-  include zabbix::centos::install::database::init
+  #Instalando e configurando o banco de dados (Postgres - Suportado por essa instalação)
+  Class['zabbix::centos::install::database::pgsql::init'] ->
 
-  #Class['zabbix::centos::install::repository']
-
-  #notify('Instalando as dependências necessárias para a configuração do Zabbix')
-  #Class['zabbix::centos::install::dependencies']
-
-  #notify('Instando e configurando o banco de dados (Mysql - Suportado por essa instalação)')
-  #Class['zabbix::centos::install::database::init']
+  #Instalando o zabbix server e zabbix web
+  Class['zabbix::centos::install::server']
 }
