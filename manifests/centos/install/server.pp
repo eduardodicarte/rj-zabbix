@@ -1,6 +1,11 @@
 class zabbix::centos::install::server {
   $timezone = "America/Sao_Paulo"
 
+  #config zabbix server
+  $dbname = "zabbix"
+  $dbuser = "zbxadm"
+  $dbpass = "zbxadm"
+
   package {'zabbix-server-pgsql':
     ensure => present
   } ->
@@ -19,5 +24,11 @@ class zabbix::centos::install::server {
     ensure  => file,
     path    => '/etc/zabbix/web/zabbix.conf.php',
     content => template("zabbix/zabbix.conf.php.erb")
+  } ->
+
+  file {'zabbix_server.conf':
+    ensure  => file,
+    path    => '/etc/zabbix/zabbix_server.conf',
+    content => template("zabbix/zabbix_server.conf.erb")
   }
 }

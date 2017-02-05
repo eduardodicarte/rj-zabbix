@@ -4,10 +4,10 @@ global $DB;
 
 $DB['TYPE']     = 'POSTGRESQL';
 $DB['SERVER']   = 'localhost';
-$DB['PORT']     = '0';
-$DB['DATABASE'] = 'zabbix';
-$DB['USER']     = 'zbxadm';
-$DB['PASSWORD'] = 'zbxadm';
+$DB['PORT']     = '5432';
+$DB['DATABASE'] = '<%= @dbname %>';
+$DB['USER']     = '<%= @dbuser %>';
+$DB['PASSWORD'] = '<%= @dbpass %>';
 
 // Schema name. Used for IBM DB2 and PostgreSQL.
 $DB['SCHEMA'] = '';
